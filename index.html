@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>8 Days to Go - Case File</title>
+    <style>
+        :root { --law-gold: #c5a059; --law-blue: #1a2a6c; --paper: #fdfaf3; }
+        body, html { margin:0; padding:0; overflow:hidden; font-family:'Times New Roman', serif; background:#000; color: #333; }
+
+        .stage { display:none; width:100vw; height:100vh; justify-content:center; align-items:center; flex-direction:column; text-align:center; position:absolute; }
+        .active { display:flex; animation:fadeIn 0.5s forwards; }
+
+        /* Warrant Card */
+        .warrant-card { 
+            width: 85%; max-width: 400px; background: var(--paper); 
+            padding: 25px; border: 8px double var(--law-gold); position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+
+        /* Jail Bars Animation */
+        .bars { 
+            position: absolute; top:0; left:0; width:100%; height:100%; 
+            background: repeating-linear-gradient(90deg, transparent, transparent 35px, #2c2c2c 35px, #444 45px);
+            z-index: 10; transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bars-open { transform: translateY(-110%); }
+
+        /* Points Styling */
+        .point-item { margin-bottom: 12px; padding-left: 20px; position: relative; line-height: 1.5; font-weight: 500;}
+        .point-item::before { content: "•"; position: absolute; left: 0; color: var(--law-blue); font-size: 1.5rem; top: -5px; }
+
+        .btn { background: var(--law-blue); color: white; border: none; padding: 12px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 15px; width: 100%; }
+        .highlight { color: #b22222; font-weight: bold; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div id="stage1" class="stage active" style="background: radial-gradient(#222, #000);">
+        <div class="warrant-card">
+            <h2 style="color: var(--law-blue); margin-bottom: 5px;">ARREST WARRANT</h2>
+            <p style="font-size: 0.7rem; letter-spacing: 2px;">CONFIDENTIAL | 8 DAYS LEFT</p>
+            <hr>
+            <p style="text-align: left; font-size: 0.9rem;"><b>Name:</b> Doc Sahiba (Ashu Janu)</p>
+            <p style="text-align: left; font-size: 0.9rem;"><b>Jurm:</b> Pyara hona jurm nahi hai, magar jitni pyari aap hain... utna hona qanoonan sakht jurm hai!</p>
+            
+            <p style="font-size: 0.8rem; margin-top: 20px; text-align: left; font-weight: bold;">Available Lawyer:</p>
+            <button class="btn" onclick="callSaim()">SAIM (Senior Advocate)</button>
+        </div>
+    </div>
+
+    <div id="stage2" class="stage" style="background:#0a0a0a;">
+        <div class="bars" id="jailBars"></div>
+        <div style="z-index: 5; color: white;">
+            <h2 style="color: var(--law-gold);">Saim is here!</h2>
+            <p>Wo aapko is qaid se nikalne aaye hain...</p>
+            <button class="btn" style="background: #28a745; width: auto;" onclick="openJail()">Bahar Nikaliye ❤️</button>
+        </div>
+    </div>
+
+    <div id="stage3" class="stage" style="background: var(--paper); overflow-y: auto; padding: 30px 15px;">
+        <div style="max-width: 450px; text-align: left;">
+            <h2 style="color: var(--law-blue); text-align: center; text-decoration: underline;">Official Case Dismissed ✅</h2>
+            
+            <div style="margin-top: 25px;">
+                <div class="point-item">Meri pyari <b>Doc Sahiba</b>, Saim ne aapko isliye riha karwaya kyunke aapki masoomiyat ki koi saza nahi ho sakti.</div>
+                
+                <div class="point-item">Aap par sabse bada ilzam aapka <span class="highlight">Husn</span> hai, jisne mere dil ki adalat mein kabza kar rakha hai.</div>
+                
+                <div class="point-item">Abhi aap ye parh kar <span class="highlight">muskurah rahi hain</span>... aur aapki is muskurahat ne aapki khubsurti ko 100 guna barha diya hai!</div>
+                
+                <div id="moreOptions" style="display:none;">
+                    <div class="point-item">Itni khubsurti ke saath muskurana... ye to ek naya jurm hai, magar Saim har bar aapka lawyer ban kar aapko bacha lega.</div>
+                    
+                    <div class="point-item">8 din reh gaye hain... meri bechaini barhti ja rahi hai us haseen din ke liye.</div>
+                    
+                    <div class="point-item">Advance Happy Birthday meri sabse pyari <b>Ashu Janu</b>! 🎂⚖️</div>
+                </div>
+            </div>
+
+            <button class="btn" id="moreBtn" onclick="showPoints()">Check More Charges ❤️</button>
+            <center><p style="margin-top: 20px; font-size: 0.8rem; color: #777;">Case Filed by: Saim</p></center>
+        </div>
+    </div>
+
+    <script>
+        function callSaim() {
+            document.getElementById('stage1').style.display = 'none';
+            document.getElementById('stage2').style.display = 'flex';
+        }
+
+        function openJail() {
+            document.getElementById('jailBars').classList.add('bars-open');
+            setTimeout(() => {
+                document.getElementById('stage2').style.display = 'none';
+                document.getElementById('stage3').style.display = 'flex';
+            }, 1800);
+        }
+
+        function showPoints() {
+            document.getElementById('moreOptions').style.display = 'block';
+            document.getElementById('moreBtn').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
