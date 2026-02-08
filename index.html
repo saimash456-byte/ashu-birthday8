@@ -22,9 +22,7 @@
 
         .btn { background: var(--law-blue); color: white; border: none; padding: 15px 25px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 20px; width: 100%; font-size: 1rem; position: relative; z-index: 1001; }
         .highlight { color: #b22222; font-weight: bold; }
-        .point { text-align: left; margin-bottom: 18px; line-height: 1.6; font-size: 0.95rem; border-left: 4px solid var(--law-blue); padding-left: 12px; animation: slideIn 0.5s ease; }
-        
-        @keyframes slideIn { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .point { text-align: left; margin-bottom: 15px; line-height: 1.5; font-size: 0.95rem; border-left: 4px solid var(--law-blue); padding-left: 12px; }
     </style>
 </head>
 <body>
@@ -61,24 +59,24 @@
         </div>
     </div>
 
-    <div id="slide5" class="stage" style="background: var(--paper); overflow-y: auto; display: none;">
+    <div id="slide5" class="stage" style="background: var(--paper); overflow-y: auto;">
         <div style="max-width: 450px; padding: 25px; color: #333;">
-            <h2 style="color: var(--law-blue); text-align: center; border-bottom: 2px solid var(--law-blue); padding-bottom: 10px;">Case Dismissed ✅</h2>
+            <h2 style="color: var(--law-blue); text-align: center;">Case Closed ✅</h2>
             
             <div style="margin-top: 20px;">
-                <div class="point">Meri pyari <b>Doc Sahiba</b>, Saim ne aapko isliye riha karwaya kyunke aapki masoomiyat ki koi saza nahi ho sakti.</div>
+                <div class="point">Saim ne aapko isliye riha karwaya kyunke aapki masoomiyat ki koi saza nahi ho sakti.</div>
                 
-                <div class="point">Aap fikar na karein, jab tak main hoon, duniya ki koi bhi mushkil aapko chhu bhi nahi sakti. Main hamesha aapka protector ban kar sath rahoonga.</div>
+                <div class="point">8 din baqi hain us haseen din ke liye jab ye duniya aur bhi khubsurat hui thi.</div>
                 
-                <div class="point">Zindagi ke har mod par, har kanoon ke samne main aapka dhaal (shield) ban kar khara rahoonga aur aapko isi tarah har mushkil se bachata rahoonga.</div>
+                <div class="point"><i>"Aap meri zindagi ki wo haseen giraftari ho jisse main kabhi riha nahi hona chahta."</i></div>
+
+                <div class="point">Aap be-fikar rahein, jab tak Saim aapke sath hai, koi mushkil aapke kareeb nahi aa sakti. Main hamesha dhaal ban kar aapke sath khara rahoonga.</div>
                 
-                <div class="point">Aapka <span class="highlight">Husn</span> aur aapki <span class="highlight">Adaayein</span> mere dil ki adalat mein hamesha "Guilty" rahengi, kyunke aapne mera dil chura liya hai.</div>
+                <div class="point">Zindagi ke har mod par main aapka protector ban kar aapko isi tarah har pareshani se bachata rahoonga.</div>
                 
-                <div class="point">Ab jo aap ye sab parh kar muskurah rahi hain, bas yehi muskurahat mere jeene ki wajah hai aur isi muskurahat ko bachana mera sabse bada farz hai.</div>
+                <div class="point">Aapka <span class="highlight">Husn</span> aur ye <span class="highlight">Muskurahat</span> mere dil par kabza kar chuke hain, aur ye kabza main kabhi khatam nahi hone doonga.</div>
                 
-                <div class="point">8 din baqi hain... meri dharkanen har guzarte din ke saath tez ho rahi hain kyunke aapka birthday mere liye kisi tyohar se kam nahi.</div>
-                
-                <div class="point">Main waada karta hoon ke hamari ye dosti aur mohabbat hamesha sabse upar rahegi. I'm always with you, my <b>Ashu Janu</b>.</div>
+                <div class="point">Bas aap isi tarah muskurati rahein, kyunke aapki khushi hi mere liye sabse bada sukoon hai.</div>
             </div>
 
             <p style="text-align: center; font-weight: bold; color: var(--law-blue); font-size: 1.2rem; margin-top: 20px;">Advance Happy Birthday, Ashu Janu! 🎂⚖️</p>
@@ -97,8 +95,7 @@
             const bars = document.getElementById('bars-overlay');
             bars.classList.add('bars-open');
             setTimeout(() => {
-                document.getElementById('slide4').style.display = 'none';
-                document.getElementById('slide5').style.display = 'block'; // Use block for scrolling
+                nextSlide(4, 5);
                 bars.style.display = 'none';
             }, 1300);
         }
