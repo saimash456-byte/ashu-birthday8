@@ -11,9 +11,8 @@
         .stage { display:none; width:100vw; height:100vh; justify-content:center; align-items:center; flex-direction:column; text-align:center; position:absolute; padding: 20px; box-sizing: border-box; }
         .active { display:flex; }
 
-        .warrant-card { width: 100%; max-width: 380px; background: var(--paper); padding: 25px; border: 8px double var(--law-gold); color: #333; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .warrant-card { width: 100%; max-width: 380px; background: var(--paper); padding: 25px; border: 8px double var(--law-gold); color: #333; box-shadow: 0 0 20px rgba(0,0,0,0.5); position: relative; }
         
-        /* Jail Bars Styling */
         #bars-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: repeating-linear-gradient(90deg, transparent, transparent 35px, #333 35px, #222 45px);
@@ -21,15 +20,18 @@
         }
         .bars-open { transform: translateY(-100%); }
 
-        .btn { background: var(--law-blue); color: white; border: none; padding: 15px 25px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 20px; width: 100%; font-size: 1rem; position: relative; z-index: 10; }
+        .btn { background: var(--law-blue); color: white; border: none; padding: 15px 25px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 20px; width: 100%; font-size: 1rem; position: relative; z-index: 1001; }
         .highlight { color: #b22222; font-weight: bold; }
+        .point { text-align: left; margin-bottom: 18px; line-height: 1.6; font-size: 0.95rem; border-left: 4px solid var(--law-blue); padding-left: 12px; animation: slideIn 0.5s ease; }
+        
+        @keyframes slideIn { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
     </style>
 </head>
 <body>
 
     <div id="slide1" class="stage active" style="background: #111;">
         <div class="warrant-card">
-            <h2 style="color: var(--law-blue);">ARREST WARRANT</h2>
+            <h2 style="color: var(--law-blue); text-decoration: underline;">ARREST WARRANT</h2>
             <p style="text-align: left;"><b>Accused:</b> Ashu Janu (Doc Sahiba)</p>
             <p style="text-align: left;">Pyara hona jurm nahi hai, magar jitni pyari aap hain... utna hona qanoonan sakht jurm hai!</p>
             <button class="btn" onclick="nextSlide(1, 2)">Next (More Charges) ⚖️</button>
@@ -41,32 +43,47 @@
             <h3 style="color: #b22222;">ADDITIONAL CHARGES</h3>
             <p style="text-align: left;">• Ek to ye ke aap par <span class="highlight">Husn</span> ka jurm sabit ho chuka hai.</p>
             <p style="text-align: left;">• Aur ab jo aap <span class="highlight">muskurah rahi hain</span>, isse aapki khubsurti bht barh gai hai... ye ek naya jurm hai!</p>
-            <button class="btn" onclick="nextSlide(2, 3)">Find a Lawyer 🏛️</button>
+            <button class="btn" onclick="nextSlide(2, 3)">Call Your Lawyer 🏛️</button>
         </div>
     </div>
 
     <div id="slide3" class="stage" style="background: #000;">
         <h2 style="color: white; margin-bottom: 20px;">Appointed Lawyer:</h2>
         <button class="btn" style="background: var(--law-gold); color: black; font-size: 1.5rem; width: 280px;" onclick="nextSlide(3, 4)">SAIM</button>
-        <p style="color: #555; margin-top: 15px;">(Tap on SAIM to go to Jail)</p>
     </div>
 
     <div id="slide4" class="stage" style="background: #050505;">
         <div id="bars-overlay"></div>
-        <div style="z-index: 1000; position: relative; width: 100%; max-width: 300px;">
-            <h2 style="color: var(--law-gold); margin-bottom: 20px;">Saim is here for you!</h2>
-            <button class="btn" style="background: #28a745;" onclick="openJail()">Riha Karein ❤️</button>
-            <p style="color: white; margin-top: 10px;">(Click button to lift the bars)</p>
+        <div style="z-index: 1002; position: relative; width: 100%; max-width: 350px; color: white;">
+            <h2 style="color: var(--law-gold);">Saim is here!</h2>
+            <p style="font-style: italic; line-height: 1.5;">"Sorry Ma'am, aapka Saim aa gaya hai... humein bohot danta unho ne, aap kindly ab mere sath ghar chalein."</p>
+            <button class="btn" style="background: #28a745;" onclick="openJail()">Click Me ❤️</button>
         </div>
     </div>
 
-    <div id="slide5" class="stage" style="background: var(--paper);">
-        <div style="max-width: 450px; text-align: left; color: #333; padding: 20px; border-left: 5px solid var(--law-blue);">
-            <h2 style="color: var(--law-blue); text-align: center;">Case Dismissed ✅</h2>
-            <p>• Meri pyari <b>Doc Sahiba</b>, Saim ne aapko isliye riha karwaya kyunke aapki masoomiyat ki koi saza nahi ho sakti.</p>
-            <p>• 8 din baqi hain us haseen din ke liye jab ye duniya aur bhi khubsurat hui thi.</p>
-            <p>• <i>"Aap meri zindagi ki wo haseen giraftari ho jisse main kabhi riha nahi hona chahta."</i></p>
-            <p style="text-align: center; font-weight: bold; color: var(--law-blue); margin-top: 20px;">Advance Happy Birthday, Ashu Janu! 🎂⚖️</p>
+    <div id="slide5" class="stage" style="background: var(--paper); overflow-y: auto; display: none;">
+        <div style="max-width: 450px; padding: 25px; color: #333;">
+            <h2 style="color: var(--law-blue); text-align: center; border-bottom: 2px solid var(--law-blue); padding-bottom: 10px;">Case Dismissed ✅</h2>
+            
+            <div style="margin-top: 20px;">
+                <div class="point">Meri pyari <b>Doc Sahiba</b>, Saim ne aapko isliye riha karwaya kyunke aapki masoomiyat ki koi saza nahi ho sakti.</div>
+                
+                <div class="point">Aap fikar na karein, jab tak main hoon, duniya ki koi bhi mushkil aapko chhu bhi nahi sakti. Main hamesha aapka protector ban kar sath rahoonga.</div>
+                
+                <div class="point">Zindagi ke har mod par, har kanoon ke samne main aapka dhaal (shield) ban kar khara rahoonga aur aapko isi tarah har mushkil se bachata rahoonga.</div>
+                
+                <div class="point">Aapka <span class="highlight">Husn</span> aur aapki <span class="highlight">Adaayein</span> mere dil ki adalat mein hamesha "Guilty" rahengi, kyunke aapne mera dil chura liya hai.</div>
+                
+                <div class="point">Ab jo aap ye sab parh kar muskurah rahi hain, bas yehi muskurahat mere jeene ki wajah hai aur isi muskurahat ko bachana mera sabse bada farz hai.</div>
+                
+                <div class="point">8 din baqi hain... meri dharkanen har guzarte din ke saath tez ho rahi hain kyunke aapka birthday mere liye kisi tyohar se kam nahi.</div>
+                
+                <div class="point">Main waada karta hoon ke hamari ye dosti aur mohabbat hamesha sabse upar rahegi. I'm always with you, my <b>Ashu Janu</b>.</div>
+            </div>
+
+            <p style="text-align: center; font-weight: bold; color: var(--law-blue); font-size: 1.2rem; margin-top: 20px;">Advance Happy Birthday, Ashu Janu! 🎂⚖️</p>
+            
+            <button class="btn" onclick="location.reload()">Reset Case File</button>
         </div>
     </div>
 
@@ -77,14 +94,12 @@
         }
 
         function openJail() {
-            // Bars ko transform se upar bhejo
             const bars = document.getElementById('bars-overlay');
             bars.classList.add('bars-open');
-            
-            // Animation ke baad next slide
             setTimeout(() => {
-                nextSlide(4, 5);
-                bars.style.display = 'none'; // Mukammal khatam
+                document.getElementById('slide4').style.display = 'none';
+                document.getElementById('slide5').style.display = 'block'; // Use block for scrolling
+                bars.style.display = 'none';
             }, 1300);
         }
     </script>
