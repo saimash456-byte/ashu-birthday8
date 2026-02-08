@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>8 Days to Go - Legal Case</title>
+    <title>8 Days to Go - Final Case</title>
     <style>
         :root { --law-blue: #1a2a6c; --law-gold: #c5a059; --paper: #fdfaf3; }
         body, html { margin:0; padding:0; overflow:hidden; font-family:'Times New Roman', serif; background:#000; }
@@ -13,12 +13,18 @@
 
         .warrant-card { width: 100%; max-width: 380px; background: var(--paper); padding: 25px; border: 8px double var(--law-gold); box-shadow: 0 0 20px rgba(0,0,0,0.5); color: #333; }
         
-        /* Jail Bars Styling */
-        .jail-container { position: relative; width: 300px; height: 400px; background: #111; border: 5px solid #444; overflow: hidden; }
-        .bars { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(90deg, transparent, transparent 30px, #333 30px, #222 45px); z-index: 10; transition: transform 1.5s ease-in; }
+        /* Jail Container */
+        .jail-container { position: relative; width: 300px; height: 350px; background: #111; border: 5px solid #444; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        
+        /* The FIX: pointer-events none taake click bars ke piche button par lage */
+        .bars { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: repeating-linear-gradient(90deg, transparent, transparent 30px, #333 30px, #222 45px); 
+            z-index: 5; pointer-events: none; transition: transform 1.2s ease-in; 
+        }
         .bars-open { transform: translateY(-100%); }
 
-        .btn { background: var(--law-blue); color: white; border: none; padding: 15px 25px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 20px; width: 100%; font-size: 1rem; }
+        .btn { background: var(--law-blue); color: white; border: none; padding: 15px 25px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 20px; width: 100%; position: relative; z-index: 10; }
         .highlight { color: #b22222; font-weight: bold; }
         
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -28,9 +34,9 @@
 
     <div id="slide1" class="stage active" style="background: #111;">
         <div class="warrant-card">
-            <h2 style="color: var(--law-blue); text-decoration: underline;">ARREST WARRANT</h2>
-            <p style="text-align: left; margin-top: 20px;"><b>Accused:</b> Ashu Janu (Doc Sahiba)</p>
-            <p style="text-align: left; line-height: 1.6;">Pyara hona jurm nahi hai, magar jitni pyari aap hain... utna hona qanoonan sakht jurm hai!</p>
+            <h2 style="color: var(--law-blue);">ARREST WARRANT</h2>
+            <p style="text-align: left;"><b>Accused:</b> Ashu Janu (Doc Sahiba)</p>
+            <p style="text-align: left;">Pyara hona jurm nahi hai, magar jitni pyari aap hain... utna hona qanoonan sakht jurm hai!</p>
             <button class="btn" onclick="nextSlide(1, 2)">Next (More Charges) ⚖️</button>
         </div>
     </div>
@@ -38,59 +44,50 @@
     <div id="slide2" class="stage" style="background: #111;">
         <div class="warrant-card">
             <h3 style="color: #b22222;">ADDITIONAL CHARGES</h3>
-            <hr>
-            <p style="text-align: left; font-size: 1.1rem;">• Ek to ye ke aap par <span class="highlight">Husn</span> ka jurm sabit ho chuka hai.</p>
-            <p style="text-align: left; font-size: 1.1rem;">• Aur ab jo aap <span class="highlight">muskurah rahi hain</span>, isse aapki khubsurti bht barh gai hai... ye ek naya jurm hai!</p>
+            <p style="text-align: left;">• Ek to ye ke aap par <span class="highlight">Husn</span> ka jurm sabit ho chuka hai.</p>
+            <p style="text-align: left;">• Aur ab jo aap <span class="highlight">muskurah rahi hain</span>, isse aapki khubsurti bht barh gai hai... ye ek naya jurm hai!</p>
             <button class="btn" onclick="nextSlide(2, 3)">Find a Lawyer 🏛️</button>
         </div>
     </div>
 
     <div id="slide3" class="stage" style="background: #000;">
-        <h2 style="color: white; margin-bottom: 20px;">Appointed Lawyer List:</h2>
-        <div style="width: 100%; max-width: 300px;">
-            <button class="btn" style="background: #c5a059; color: black; font-size: 1.5rem;" onclick="nextSlide(3, 4)">SAIM</button>
-            <p style="color: #666; margin-top: 10px;">(Tap on SAIM to request bail)</p>
-        </div>
+        <h2 style="color: white;">Appointed Lawyer:</h2>
+        <button class="btn" style="background: var(--law-gold); color: black; font-size: 1.5rem; width: 250px;" onclick="nextSlide(3, 4)">SAIM</button>
     </div>
 
     <div id="slide4" class="stage" style="background: #050505;">
-        <h2 style="color: var(--law-gold); margin-bottom: 15px;">Saim is here for you!</h2>
+        <h2 style="color: var(--law-gold); margin-bottom: 15px;">Saim is here!</h2>
         <div class="jail-container">
             <div class="bars" id="jailBars"></div>
-            <div style="display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 20px; color: white;">
-                <p>Aapki rihai ke orders aa chuke hain.</p>
-                <button class="btn" style="background: #28a745;" onclick="openJail()">Riha Karein ❤️</button>
-            </div>
+            <button class="btn" style="background: #28a745; width: 80%;" onclick="openJail()">Bahar Nikaliye ❤️</button>
         </div>
     </div>
 
-    <div id="slide5" class="stage" style="background: var(--paper); overflow-y: auto;">
+    <div id="slide5" class="stage" style="background: var(--paper);">
         <div style="max-width: 450px; text-align: left; color: #333; padding: 20px; border-left: 5px solid var(--law-blue);">
             <h2 style="color: var(--law-blue); text-align: center;">Case Closed ✅</h2>
-            <p>Meri pyari <b>Doc Sahiba</b>, Saim ne aapko isliye riha karwaya kyunke aapki masoomiyat ki koi saza nahi ho sakti.</p>
-            <p>8 din baqi hain us haseen din ke liye jab ye duniya aur bhi khubsurat hui thi.</p>
-            <p><i>"Aap meri zindagi ki wo haseen giraftari ho jisse main kabhi riha nahi hona chahta."</i></p>
-            <p>Advance Happy Birthday, Meri Pyari <b>Ashu Janu</b>! 🎂⚖️</p>
-            <center><button class="btn" style="width: auto;" onclick="location.reload()">Reset Case</button></center>
+            <p>• Meri pyari <b>Doc Sahiba</b>, Saim ne aapko isliye riha karwaya kyunke aapki masoomiyat ki koi saza nahi ho sakti.</p>
+            <p>• 8 din baqi hain us haseen din ke liye jab ye duniya aur bhi khubsurat hui thi.</p>
+            <p>• <i>"Aap meri zindagi ki wo haseen giraftari ho jisse main kabhi riha nahi hona chahta."</i></p>
+            <p style="text-align: center; font-weight: bold; color: var(--law-blue);">Advance Happy Birthday, Ashu Janu! 🎂⚖️</p>
+            <button class="btn" onclick="location.reload()">Wapis Dekhein</button>
         </div>
     </div>
 
     <script>
         function nextSlide(current, next) {
-            document.getElementById('slide' + current).classList.remove('active');
             document.getElementById('slide' + current).style.display = 'none';
-            
             document.getElementById('slide' + next).style.display = 'flex';
-            setTimeout(() => {
-                document.getElementById('slide' + next).classList.add('active');
-            }, 10);
+            document.getElementById('slide' + next).classList.add('active');
         }
 
         function openJail() {
+            // Bars upar jayengi
             document.getElementById('jailBars').classList.add('bars-open');
+            // Thori der baad next slide
             setTimeout(() => {
                 nextSlide(4, 5);
-            }, 1600);
+            }, 1500);
         }
     </script>
 </body>
