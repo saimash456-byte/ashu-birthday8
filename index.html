@@ -9,7 +9,7 @@
         body, html { margin:0; padding:0; overflow:hidden; font-family:'Times New Roman', serif; background:#000; }
 
         .stage { display:none; width:100vw; height:100vh; justify-content:center; align-items:center; flex-direction:column; text-align:center; position:absolute; padding: 20px; box-sizing: border-box; }
-        .active { display:flex; }
+        .active { display:flex; animation: fadeIn 0.4s forwards; }
 
         .warrant-card { width: 100%; max-width: 380px; background: var(--paper); padding: 25px; border: 8px double var(--law-gold); color: #333; box-shadow: 0 0 20px rgba(0,0,0,0.5); position: relative; }
         
@@ -23,6 +23,8 @@
         .btn { background: var(--law-blue); color: white; border: none; padding: 15px 25px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 20px; width: 100%; font-size: 1rem; position: relative; z-index: 1001; }
         .highlight { color: #b22222; font-weight: bold; }
         .point { text-align: left; margin-bottom: 15px; line-height: 1.5; font-size: 0.95rem; border-left: 4px solid var(--law-blue); padding-left: 12px; }
+        
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
     </style>
 </head>
 <body>
@@ -54,35 +56,32 @@
         <div id="bars-overlay"></div>
         <div style="z-index: 1002; position: relative; width: 100%; max-width: 350px; color: white;">
             <h2 style="color: var(--law-gold);">Saim is here!</h2>
-            <p style="font-style: italic; line-height: 1.5;">"Sorry Ma'am, aapka Saim aa gaya hai... humein bohot danta unho ne, aap kindly ab unke sath ghar chalein."</p>
+            <p style="font-style: italic; line-height: 1.5;">"Sorry Ma'am, aapka Saim aa gaya hai... humein bohot danta unho ne, aap kindly ab mere sath ghar chalein."</p>
             <button class="btn" style="background: #28a745;" onclick="openJail()">Click Me ❤️</button>
         </div>
     </div>
 
-    <div id="slide5" class="stage" style="background: var(--paper); overflow-y: auto;">
+    <div id="slide5" class="stage" style="background: var(--paper);">
         <div style="max-width: 450px; padding: 25px; color: #333;">
-            <h2 style="color: var(--law-blue); text-align: center;">Case Dismissed ✅</h2>
-            
-            <div style="margin-top: 20px;">
-                <div class="point">Mena  aapko isliye riha karwaya kyunke aapki masoomiyat ki koi saza nahi ho sakti.</div>
-                
+            <h2 style="color: var(--law-blue); text-align: center;">Case Closed ✅</h2>
+            <div style="margin-top: 10px;">
+                <div class="point">Saim ne aapko isliye riha karwaya kyunke aapki masoomiyat ki koi saza nahi ho sakti.</div>
                 <div class="point">8 din baqi hain us haseen din ke liye jab ye duniya aur bhi khubsurat hui thi.</div>
-                
                 <div class="point"><i>"Aap meri zindagi ki wo haseen giraftari ho jisse main kabhi riha nahi hona chahta."</i></div>
-
                 <div class="point">Aap be-fikar rahein, jab tak Saim aapke sath hai, koi mushkil aapke kareeb nahi aa sakti. Main hamesha dhaal ban kar aapke sath khara rahoonga.</div>
-                
-                <div class="point">Zindagi ke har mod par main aapka protector ban kar aapko isi tarah har pareshani se bachata rahoonga.</div>
-                
-                <div class="point">Aapka <span class="highlight">Husn</span> aur ye <span class="highlight">Muskurahat</span> mere dil par kabza kar chuke hain, aur ye kabza main kabhi khatam nahi hone doonga.</div>
-                <div class="point">Aapka <span class="highlight">Husn</span> aur aapki <span class="highlight">Adaayein</span> mere dil ki adalat mein hamesha "Guilty" rahengi, kyunke aapne mera dil chura liya hai.</div>
-                <div class="point">Main waada karta hoon ke hamari ye dosti aur mohabbat hamesha sabse upar rahegi. I'm always with you, my <b>Ashu Janu</b>.</div>
-                <div class="point">Bas aap isi tarah muskurati rahein, kyunke aapki khushi hi mere liye sabse bada sukoon hai.</div>
             </div>
+            <button class="btn" onclick="nextSlide(5, 6)">Read More... ❤️</button>
+        </div>
+    </div>
 
-            <p style="text-align: center; font-weight: bold; color: var(--law-blue); font-size: 1.2rem; margin-top: 20px;">Advance Happy Birthday, Ashu Janu! 🎂⚖️</p>
+    <div id="slide6" class="stage" style="background: var(--paper);">
+        <div style="max-width: 450px; padding: 25px; color: #333;">
+            <div class="point">Zindagi ke har mod par main aapka protector ban kar aapko isi tarah har pareshani se bachata rahoonga.</div>
+            <div class="point">Aapka <span class="highlight">Husn</span> aur ye <span class="highlight">Muskurahat</span> mere dil par kabza kar chuke hain, aur ye kabza main kabhi khatam nahi hone doonga.</div>
+            <div class="point">Bas aap isi tarah muskurati rahein, kyunke aapki khushi hi mere liye sabse bada sukoon hai.</div>
             
-            <button class="btn" onclick="location.reload()">Reset Case File</button>
+            <p style="text-align: center; font-weight: bold; color: var(--law-blue); font-size: 1.2rem; margin-top: 20px;">Advance Happy Birthday, Ashu Janu! 🎂⚖️</p>
+            <button class="btn" style="background:var(--law-gold); color:black;" onclick="location.reload()">Start Over ✨</button>
         </div>
     </div>
 
